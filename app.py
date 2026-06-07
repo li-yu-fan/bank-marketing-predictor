@@ -242,32 +242,36 @@ with tab2:
         with st.form("prediction_form"):
             inputs = {}
 
-            # Numeric inputs in 5-column grid: each column gets 2 fields
-            num_cols = st.columns(5)
-            for i, col_name in enumerate(_NUMERIC_COLS):
-                with num_cols[i % 5]:
-                    default = (
-                        0
-                        if col_name not in df.columns
-                        else float(df[col_name].median())
-                    )
-                    inputs[col_name] = st.number_input(
-                        col_name,
-                        value=default,
-                        format="%.2f",
-                        key=f"pred_{col_name}",
-                    )
+            # Numeric inputs: 2 rows x 5 columns (no column reuse to avoid input loss)
+            for row in range(2):
+                cols = st.columns(5)
+                for ci, col_name in enumerate(_NUMERIC_COLS[row * 5 : (row + 1) * 5]):
+                    with cols[ci]:
+                        default = (
+                            0
+                            if col_name not in df.columns
+                            else float(df[col_name].median())
+                        )
+                        inputs[col_name] = st.number_input(
+                            col_name,
+                            value=default,
+                            format="%.2f",
+                            key=f"pred_{col_name}",
+                        )
 
-            # Categorical inputs in 5-column grid: each column gets 2 fields
-            cat_cols = st.columns(5)
-            for i, col_name in enumerate(_CATEGORICAL_COLS):
-                with cat_cols[i % 5]:
-                    options = ["unknown"] + sorted(
-                        df[col_name].dropna().unique().tolist()
-                    )
-                    inputs[col_name] = st.selectbox(
-                        col_name, options, key=f"pred_{col_name}"
-                    )
+            # Categorical inputs: 2 rows x 5 columns
+            for row in range(2):
+                cols = st.columns(5)
+                for ci, col_name in enumerate(
+                    _CATEGORICAL_COLS[row * 5 : (row + 1) * 5]
+                ):
+                    with cols[ci]:
+                        options = ["unknown"] + sorted(
+                            df[col_name].dropna().unique().tolist()
+                        )
+                        inputs[col_name] = st.selectbox(
+                            col_name, options, key=f"pred_{col_name}"
+                        )
 
             submitted = st.form_submit_button(
                 "预测", type="primary", use_container_width=True
