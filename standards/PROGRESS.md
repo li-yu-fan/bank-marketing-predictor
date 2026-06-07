@@ -8,9 +8,9 @@
 
 ## 当前状态 (最后更新: 2026-06-07 · by Claude)
 
-- **阶段**:`开发中` — 第 ③ 步模块 1 完成,等待确认进入模块 2
-- **上一步完成**:✅ 模块 1 项目骨架 (`feature/1-project-init`) — ruff + pytest 全绿,覆盖率 100%,已推送。
-- **下一步 (TODO 第一条)**:确认后进入模块 2 — 数据加载模块。
+- **阶段**:`开发中` — 第 ③ 步模块 2 完成,等待确认进入模块 3
+- **上一步完成**:✅ 模块 2 数据加载 — `load_csv` + `validate_columns` + `get_data_summary`,16 tests,覆盖率 100%。
+- **下一步 (TODO 第一条)**:确认后进入模块 3 — 数据分析模块。
 - **阻塞项**:无。
 
 ---
@@ -29,7 +29,7 @@
 
 ### 第③步 · 本地模块化开发
 - [x] 模块 1: 项目骨架 — `app.py` + `requirements.txt` + `requirements-dev.txt` + `Dockerfile` + CI workflow
-- [ ] 模块 2: 数据加载 — `src/data_loader.py` + `tests/test_data_loader.py`
+- [x] 模块 2: 数据加载 — `src/data_loader.py` + `tests/test_data_loader.py`
 - [ ] 模块 3: 数据分析 — `src/analysis.py` + `tests/test_analysis.py`
 - [ ] 模块 4: 可视化 — `src/visuals.py` + `tests/test_visuals.py`
 - [ ] 模块 5: 模型训练 — `src/model_trainer.py` + `tests/test_model_trainer.py`
@@ -39,7 +39,7 @@
 ### 第④步 · 本地 CI 自检
 - [x] `ruff format --check .` 通过 (模块 1 已跑)
 - [x] `ruff check .` 通过 (模块 1 已跑)
-- [x] `pytest --cov --cov-fail-under=80` 通过 (7/7 passed, 100%)
+- [x] `pytest --cov --cov-fail-under=80` 通过 (16/16 passed, 100%)
 - [ ] 模型 AUC ≥ 0.75 验证通过
 
 ### 第⑤步 · 触发 PR
@@ -64,10 +64,11 @@
 
 ## 已知坑 (GOTCHAS)
 
-- *(暂无,项目刚初始化)*
+- **NumPy 2.x 与 pandas 不兼容**:环境中 NumPy 2.2.6 导致 `numpy.core.multiarray failed to import`(pandas 基于 NumPy 1.x 编译)。解决:`requirements.txt` 锁定 `numpy>=1.24.0,<2.0`;验证:重装后 pytest 正常导入。
 
 ---
 
 ## 里程碑 (DONE)
 
-- [x] **2026-06-07** 建仓 + 项目骨架 | `feature/1-project-init` 分支,ruff+pytest 全绿,推送成功
+- [x] **2026-06-07** 建仓 + 项目骨架 | `feature/1-project-init` 分支,ruff+pytest 全绿
+- [x] **2026-06-07** 数据加载模块 | `load_csv` + `validate_columns` + `get_data_summary`,16 tests,100% 覆盖率
