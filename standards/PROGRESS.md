@@ -8,10 +8,10 @@
 
 ## 当前状态 (最后更新: 2026-06-07 · by Claude)
 
-- **阶段**:`本地开发完成` — 第 ③ 步全部 7 个模块完成,准备进入第 ⑤ 步(发 PR)
-- **上一步完成**:✅ 模块 7 Streamlit 页面整合 — 数据分析仪表盘 + 模型训练 + 在线预测表单,56 tests,覆盖率 100%。
-- **下一步 (TODO 第一条)**:确认后进入第 ⑤ 步 — 发起 PR,等待 CI。
-- **阻塞项**:无。
+- **阶段**:`CI 全绿` — 第 ⑤ 步完成,等待人工审核合并(第 ⑥ 步)
+- **上一步完成**:✅ PR #1 已发起,CI 3 次迭代后全绿(ruff + pytest 56/56 + docker build)。
+- **下一步 (TODO 第一条)**:✋ **人工 Review 并 Merge PR**。
+- **阻塞项**:等待人工操作合并。
 
 ---
 
@@ -43,7 +43,7 @@
 - [x] 模型 AUC ≥ 0.75 验证通过 (合成数据训练)
 
 ### 第⑤步 · 触发 PR
-- [ ] git push 分支 → `gh pr create` 发起 PR → 汇报 CI 状态
+- [x] git push 分支 → `gh pr create` 发起 PR → CI 全绿(3 次迭代修复)
 
 ### 第⑥步 · 人工审核 → 合并 → 本地验证
 - [ ] **✋ 等人工 Review 并 Merge**
@@ -64,7 +64,11 @@
 
 ## 已知坑 (GOTCHAS)
 
-- **NumPy 2.x 与 pandas 不兼容**:环境中 NumPy 2.2.6 导致 `numpy.core.multiarray failed to import`(pandas 基于 NumPy 1.x 编译)。解决:`requirements.txt` 锁定 `numpy>=1.24.0,<2.0`;验证:重装后 pytest 正常导入。
+- **NumPy 2.x 与 pandas 不兼容**:环境中 NumPy 2.2.6 导致 `numpy.core.multiarray failed to import`(pandas 基于 NumPy 1.x 编译)。解决:`requirements.txt` 锁定 `numpy>=1.24.0,<2.0`。
+
+- **pandas 版本跨平台 dtype 差异**:CI runner(Linux,新版 pandas)字符串列为 `str` dtype,本地 Windows(旧版)为 `object`。测试断言 `"object"` 在 CI 失败。解决:测试改为 `assert dtype in ("object", "str")`。
+
+- **Dockerfile COPY 顺序错误**:`RUN pip install` 在 `COPY requirements.txt` 之前导致 CI `docker build` 找不到文件。解决:将 `COPY requirements.txt .` 移到 `RUN pip install` 之前。
 
 ---
 
