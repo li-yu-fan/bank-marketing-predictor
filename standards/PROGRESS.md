@@ -8,9 +8,9 @@
 
 ## 当前状态 (最后更新: 2026-06-07 · by Claude)
 
-- **阶段**:`开发中` — 第 ③ 步模块 5 完成,等待确认进入模块 6
-- **上一步完成**:✅ 模块 5 模型训练 — ColumnTransformer + LR/RF + AUC/F1/Acc + save_model,48 tests,覆盖率 100%。
-- **下一步 (TODO 第一条)**:确认后进入模块 6 — 在线预测模块。
+- **阶段**:`开发中` — 第 ③ 步模块 6 完成,只剩最后的页面整合(模块 7)
+- **上一步完成**:✅ 模块 6 在线预测 — load_model + validate_input + predict(分类+概率),56 tests,覆盖率 100%。
+- **下一步 (TODO 第一条)**:确认后进入模块 7 — Streamlit 页面整合。
 - **阻塞项**:无。
 
 ---
@@ -33,7 +33,7 @@
 - [x] 模块 3: 数据分析 — `src/analysis.py` + `tests/test_analysis.py`
 - [x] 模块 4: 可视化 — `src/visuals.py` + `tests/test_visuals.py`
 - [x] 模块 5: 模型训练 — `src/model_trainer.py` + `tests/test_model_trainer.py`
-- [ ] 模块 6: 在线预测 — `src/predictor.py` + `tests/test_predictor.py`
+- [x] 模块 6: 在线预测 — `src/predictor.py` + `tests/test_predictor.py`
 - [ ] 模块 7: Streamlit 页面整合 — `app.py` 组装分析页与预测页
 
 ### 第④步 · 本地 CI 自检
