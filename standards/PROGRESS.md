@@ -8,10 +8,10 @@
 
 ## 当前状态 (最后更新: 2026-06-07 · by Claude)
 
-- **阶段**:`US-2 完成` — PR #2 CI 全绿,等待人工审核合并。
-- **上一步完成**:✅ 数据分析页完善 — 列名对齐实际 CSV + 数据类型分布展示 + 数据预览,CI 全绿。
-- **下一步 (TODO 第一条)**:✋ **人工 Review 并 Merge PR #2**。
-- **阻塞项**:等待人工操作合并。
+- **阶段**:`US-2 已合并` — PR #2 merged → main。准备进入 US-3:在线预测系统。
+- **上一步完成**:✅ PR #2 merged,5 files → main,数据分析页完善。
+- **下一步 (TODO 第一条)**:开 `feature/3-online-prediction` 分支,实现模型训练与在线预测(见 US-3)。
+- **阻塞项**:无。
 
 ---
 
@@ -77,4 +77,4 @@
 - [x] **2026-06-07** 建仓 + 项目骨架 | `feature/1-project-init` 分支,ruff+pytest 全绿
 - [x] **2026-06-07** 数据分析模块 | `get_numeric_stats` + `get_target_distribution` + `get_correlation_matrix` + `get_missing_summary`,27 tests
 - [x] **2026-06-07** US-1 合并到 main | PR #1 merged (`gh pr merge 1 --merge`),分支保留,本地验证通过
-- [x] **2026-06-07** US-2 数据分析页完善 | 列名对齐实际 CSV + 数据类型分布 + 数据预览,PR #2 CI 全绿
+- [x] **2026-06-07** US-2 合并到 main | PR #2 merged,数据分析页完善(列名对齐 + 数据类型分布 + 数据预览)
