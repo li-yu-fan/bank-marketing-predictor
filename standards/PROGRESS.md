@@ -8,9 +8,9 @@
 
 ## 当前状态 (最后更新: 2026-06-07 · by Claude)
 
-- **阶段**:`开发中` — 第 ③ 步模块 6 完成,只剩最后的页面整合(模块 7)
-- **上一步完成**:✅ 模块 6 在线预测 — load_model + validate_input + predict(分类+概率),56 tests,覆盖率 100%。
-- **下一步 (TODO 第一条)**:确认后进入模块 7 — Streamlit 页面整合。
+- **阶段**:`本地开发完成` — 第 ③ 步全部 7 个模块完成,准备进入第 ⑤ 步(发 PR)
+- **上一步完成**:✅ 模块 7 Streamlit 页面整合 — 数据分析仪表盘 + 模型训练 + 在线预测表单,56 tests,覆盖率 100%。
+- **下一步 (TODO 第一条)**:确认后进入第 ⑤ 步 — 发起 PR,等待 CI。
 - **阻塞项**:无。
 
 ---
@@ -34,13 +34,13 @@
 - [x] 模块 4: 可视化 — `src/visuals.py` + `tests/test_visuals.py`
 - [x] 模块 5: 模型训练 — `src/model_trainer.py` + `tests/test_model_trainer.py`
 - [x] 模块 6: 在线预测 — `src/predictor.py` + `tests/test_predictor.py`
-- [ ] 模块 7: Streamlit 页面整合 — `app.py` 组装分析页与预测页
+- [x] 模块 7: Streamlit 页面整合 — `app.py` 组装分析页与预测页
 
 ### 第④步 · 本地 CI 自检
-- [x] `ruff format --check .` 通过 (模块 1 已跑)
-- [x] `ruff check .` 通过 (模块 1 已跑)
-- [x] `pytest --cov --cov-fail-under=80` 通过 (16/16 passed, 100%)
-- [x] 模型 AUC ≥ 0.75 验证通过 (合成数据训练, 48 tests passed)
+- [x] `ruff format --check .` 通过
+- [x] `ruff check .` 通过
+- [x] `pytest --cov --cov-fail-under=80` 通过 (56/56 passed, 100%)
+- [x] 模型 AUC ≥ 0.75 验证通过 (合成数据训练)
 
 ### 第⑤步 · 触发 PR
 - [ ] git push 分支 → `gh pr create` 发起 PR → 汇报 CI 状态
