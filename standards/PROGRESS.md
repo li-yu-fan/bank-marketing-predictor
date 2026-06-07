@@ -8,10 +8,10 @@
 
 ## 当前状态 (最后更新: 2026-06-07 · by Claude)
 
-- **阶段**:`US-1 完成` — 第 ⑥ 步完成,PR #1 已合并 → main,本地验证通过。准备进入第 ② 步开新分支。
-- **上一步完成**:✅ PR #1 merged,22 files → main,`streamlit run app.py --server.port 8004` HTTP 200。
-- **下一步 (TODO 第一条)**:开 `feature/2-data-analysis` 分支,实现数据分析页面(见 US-2)。
-- **阻塞项**:无。
+- **阶段**:`US-2 完成` — PR #2 CI 全绿,等待人工审核合并。
+- **上一步完成**:✅ 数据分析页完善 — 列名对齐实际 CSV + 数据类型分布展示 + 数据预览,CI 全绿。
+- **下一步 (TODO 第一条)**:✋ **人工 Review 并 Merge PR #2**。
+- **阻塞项**:等待人工操作合并。
 
 ---
 
@@ -24,7 +24,7 @@
 
 ### 第②步 · 开 feature 分支
 - [x] 从 main 切出 `feature/1-project-init` 分支,完成工程骨架(见 US-1)
-- [ ] 从 main 切出 `feature/2-data-analysis` 分支,实现数据分析页面(见 US-2)
+- [x] 从 main 切出 `feature/2-data-analysis` 分支,实现数据分析页面(见 US-2)
 - [ ] 从 main 切出 `feature/3-online-prediction` 分支,实现模型训练与在线预测(见 US-3)
 
 ### 第③步 · 本地模块化开发
@@ -77,3 +77,4 @@
 - [x] **2026-06-07** 建仓 + 项目骨架 | `feature/1-project-init` 分支,ruff+pytest 全绿
 - [x] **2026-06-07** 数据分析模块 | `get_numeric_stats` + `get_target_distribution` + `get_correlation_matrix` + `get_missing_summary`,27 tests
 - [x] **2026-06-07** US-1 合并到 main | PR #1 merged (`gh pr merge 1 --merge`),分支保留,本地验证通过
+- [x] **2026-06-07** US-2 数据分析页完善 | 列名对齐实际 CSV + 数据类型分布 + 数据预览,PR #2 CI 全绿

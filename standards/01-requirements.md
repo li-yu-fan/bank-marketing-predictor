@@ -69,7 +69,7 @@
 
 ---
 
-### US-2 数据分析交互页面 · 状态: Backlog
+### US-2 数据分析交互页面 · 状态: In Review
 
 作为 **银行营销分析师**,
 我想要 在浏览器中上传并探索营销数据,
@@ -85,6 +85,7 @@
 - 数据文件 `bank-additional-full.csv` 不进 Git,本地放在 `data/` 目录。
 - 使用 Streamlit caching(`@st.cache_data`)避免每次交互重新加载数据。
 - 图表用 plotly 实现可交互缩放、悬停提示。
+- 数据集列名使用下划线命名:`emp_var_rate`, `cons_price_index`, `cons_conf_index`, `lending_rate3m`;目标列 `subscribe`。
 
 ---
 
