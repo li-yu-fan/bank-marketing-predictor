@@ -8,10 +8,10 @@
 
 ## 当前状态 (最后更新: 2026-06-07 · by Claude)
 
-- **阶段**:`CI 全绿` — 第 ⑤ 步完成,等待人工审核合并(第 ⑥ 步)
-- **上一步完成**:✅ PR #1 已发起,CI 3 次迭代后全绿(ruff + pytest 56/56 + docker build)。
-- **下一步 (TODO 第一条)**:✋ **人工 Review 并 Merge PR**。
-- **阻塞项**:等待人工操作合并。
+- **阶段**:`US-1 完成` — 第 ⑥ 步完成,PR #1 已合并 → main,本地验证通过。准备进入第 ② 步开新分支。
+- **上一步完成**:✅ PR #1 merged,22 files → main,`streamlit run app.py --server.port 8004` HTTP 200。
+- **下一步 (TODO 第一条)**:开 `feature/2-data-analysis` 分支,实现数据分析页面(见 US-2)。
+- **阻塞项**:无。
 
 ---
 
@@ -46,8 +46,8 @@
 - [x] git push 分支 → `gh pr create` 发起 PR → CI 全绿(3 次迭代修复)
 
 ### 第⑥步 · 人工审核 → 合并 → 本地验证
-- [ ] **✋ 等人工 Review 并 Merge**
-- [ ] 本地 `streamlit run app.py --server.port 8004` 验证功能正常
+- [x] **✋ 等人工 Review 并 Merge** — `gh pr merge 1 --merge`,分支保留
+- [x] 本地 `streamlit run app.py --server.port 8004` 验证功能正常
 
 ---
 
@@ -76,3 +76,4 @@
 
 - [x] **2026-06-07** 建仓 + 项目骨架 | `feature/1-project-init` 分支,ruff+pytest 全绿
 - [x] **2026-06-07** 数据分析模块 | `get_numeric_stats` + `get_target_distribution` + `get_correlation_matrix` + `get_missing_summary`,27 tests
+- [x] **2026-06-07** US-1 合并到 main | PR #1 merged (`gh pr merge 1 --merge`),分支保留,本地验证通过
