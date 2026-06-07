@@ -8,27 +8,27 @@
 
 ## 当前状态 (最后更新: 2026-06-07 · by Claude)
 
-- **阶段**:`初始化` — 第 ① 步完成,等待确认进入第 ② 步
-- **上一步完成**:✅ 建仓 `https://github.com/li-yu-fan/bank-marketing-predictor`,SSH 推送 main。
-- **下一步 (TODO 第一条)**:确认后进入第 ② 步,从 main 切 `feature/1-project-init`。
-- **阻塞项**:无(无需 CD,跳过 Secrets 配置)。
+- **阶段**:`开发中` — 第 ③ 步模块 1 完成,等待确认进入模块 2
+- **上一步完成**:✅ 模块 1 项目骨架 (`feature/1-project-init`) — ruff + pytest 全绿,覆盖率 100%,已推送。
+- **下一步 (TODO 第一条)**:确认后进入模块 2 — 数据加载模块。
+- **阻塞项**:无。
 
 ---
 
 ## 待办清单 (TODO,按优先级)
 
 ### 第①步 · 建仓
-- [ ] 用 `gh repo create` 创建 GitHub 仓库 `bank-marketing-predictor`
-- [ ] 添加 `.gitignore`(Python 模板 + data/*.csv + models/*.pkl)
-- [ ] 初始化本地 git,提交初始 commit,推送到 main
+- [x] 用 `gh repo create` 创建 GitHub 仓库 `bank-marketing-predictor`
+- [x] 添加 `.gitignore`(Python 模板 + data/*.csv + models/*.pkl)
+- [x] 初始化本地 git,提交初始 commit,推送到 main
 
 ### 第②步 · 开 feature 分支
-- [ ] 从 main 切出 `feature/1-project-init` 分支,完成工程骨架(见 US-1)
+- [x] 从 main 切出 `feature/1-project-init` 分支,完成工程骨架(见 US-1)
 - [ ] 从 main 切出 `feature/2-data-analysis` 分支,实现数据分析页面(见 US-2)
 - [ ] 从 main 切出 `feature/3-online-prediction` 分支,实现模型训练与在线预测(见 US-3)
 
 ### 第③步 · 本地模块化开发
-- [ ] 模块 1: 项目骨架 — `app.py` + `requirements.txt` + `requirements-dev.txt` + `Dockerfile` + CI workflow
+- [x] 模块 1: 项目骨架 — `app.py` + `requirements.txt` + `requirements-dev.txt` + `Dockerfile` + CI workflow
 - [ ] 模块 2: 数据加载 — `src/data_loader.py` + `tests/test_data_loader.py`
 - [ ] 模块 3: 数据分析 — `src/analysis.py` + `tests/test_analysis.py`
 - [ ] 模块 4: 可视化 — `src/visuals.py` + `tests/test_visuals.py`
@@ -37,9 +37,9 @@
 - [ ] 模块 7: Streamlit 页面整合 — `app.py` 组装分析页与预测页
 
 ### 第④步 · 本地 CI 自检
-- [ ] `ruff format --check .` 通过
-- [ ] `ruff check .` 通过
-- [ ] `pytest --cov --cov-fail-under=80` 通过
+- [x] `ruff format --check .` 通过 (模块 1 已跑)
+- [x] `ruff check .` 通过 (模块 1 已跑)
+- [x] `pytest --cov --cov-fail-under=80` 通过 (7/7 passed, 100%)
 - [ ] 模型 AUC ≥ 0.75 验证通过
 
 ### 第⑤步 · 触发 PR
@@ -70,4 +70,4 @@
 
 ## 里程碑 (DONE)
 
-- [ ] *(暂无)*
+- [x] **2026-06-07** 建仓 + 项目骨架 | `feature/1-project-init` 分支,ruff+pytest 全绿,推送成功
