@@ -29,10 +29,10 @@ _NUMERIC_COLS = [
     "campaign",
     "pdays",
     "previous",
-    "emp.var.rate",
-    "cons.price.idx",
-    "cons.conf.idx",
-    "euribor3m",
+    "emp_var_rate",
+    "cons_price_index",
+    "cons_conf_index",
+    "lending_rate3m",
     "nr.employed",
 ]
 _CATEGORICAL_COLS = [
@@ -103,6 +103,26 @@ with tab1:
             st.success("数据无缺失值")
         else:
             st.dataframe(miss_df, use_container_width=True)
+
+    with st.expander("数据类型分布"):
+        dtype_counts = {}
+        for dtype_name in summary["dtypes"].values():
+            dtype_counts[dtype_name] = dtype_counts.get(dtype_name, 0) + 1
+        dc1, dc2 = st.columns(2)
+        dc1.metric(
+            "数值型", dtype_counts.get("int64", 0) + dtype_counts.get("float64", 0)
+        )
+        dc2.metric("分类型", dtype_counts.get("object", 0) + dtype_counts.get("str", 0))
+        # Build a DataFrame for the dtype table
+        import pandas as pd
+
+        dtype_df = pd.DataFrame(
+            [{"列名": col, "数据类型": dt} for col, dt in summary["dtypes"].items()]
+        )
+        st.dataframe(dtype_df, use_container_width=True, hide_index=True)
+
+    with st.expander("数据预览 (前 100 行)"):
+        st.dataframe(df.head(100), use_container_width=True)
 
     # Sidebar filters
     st.subheader("筛选器")
