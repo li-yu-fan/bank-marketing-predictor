@@ -52,6 +52,22 @@ st.set_page_config(page_title="Bank Marketing Predictor", layout="wide")
 st.title("Bank Marketing Predictor")
 st.markdown("银行电话营销数据分析与认购预测系统")
 
+
+@st.cache_data
+def _load_bytes(data: bytes) -> dict:
+    """Load CSV from raw bytes, validate, and return df + summary. Cached by content hash."""
+    import tempfile
+
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".csv") as tmp:
+        tmp.write(data)
+        tmp_path = tmp.name
+    df = load_csv(tmp_path)
+    os.unlink(tmp_path)
+    missing = validate_columns(df)
+    summary = get_data_summary(df)
+    return {"df": df, "missing_cols": missing, "summary": summary}
+
+
 tab1, tab2 = st.tabs(["数据分析", "在线预测"])
 
 # ── Tab 1: Data Analysis ────────────────────────────────────────────────────
@@ -62,20 +78,6 @@ with tab1:
     if uploaded_file is None:
         st.info("请上传 bank-additional-full.csv 开始分析。")
         st.stop()
-
-    # Load with Streamlit caching — pass raw bytes for reliable hashing
-    @st.cache_data
-    def _load_bytes(data: bytes) -> dict:
-        import tempfile
-
-        with tempfile.NamedTemporaryFile(delete=False, suffix=".csv") as tmp:
-            tmp.write(data)
-            tmp_path = tmp.name
-        df = load_csv(tmp_path)
-        os.unlink(tmp_path)
-        missing = validate_columns(df)
-        summary = get_data_summary(df)
-        return {"df": df, "missing_cols": missing, "summary": summary}
 
     result = _load_bytes(uploaded_file.read())
     df = result["df"]
@@ -239,21 +241,33 @@ with tab2:
 
         with st.form("prediction_form"):
             inputs = {}
+
+            # Numeric inputs in 5-column grid: each column gets 2 fields
             num_cols = st.columns(5)
             for i, col_name in enumerate(_NUMERIC_COLS):
-                default = (
-                    0 if col_name not in df.columns else float(df[col_name].median())
-                )
-                inputs[col_name] = num_cols[i % 5].number_input(
-                    col_name, value=default, format="%.2f", key=f"pred_{col_name}"
-                )
+                with num_cols[i % 5]:
+                    default = (
+                        0
+                        if col_name not in df.columns
+                        else float(df[col_name].median())
+                    )
+                    inputs[col_name] = st.number_input(
+                        col_name,
+                        value=default,
+                        format="%.2f",
+                        key=f"pred_{col_name}",
+                    )
 
+            # Categorical inputs in 5-column grid: each column gets 2 fields
             cat_cols = st.columns(5)
             for i, col_name in enumerate(_CATEGORICAL_COLS):
-                options = ["unknown"] + sorted(df[col_name].dropna().unique().tolist())
-                inputs[col_name] = cat_cols[i % 5].selectbox(
-                    col_name, options, key=f"pred_{col_name}"
-                )
+                with cat_cols[i % 5]:
+                    options = ["unknown"] + sorted(
+                        df[col_name].dropna().unique().tolist()
+                    )
+                    inputs[col_name] = st.selectbox(
+                        col_name, options, key=f"pred_{col_name}"
+                    )
 
             submitted = st.form_submit_button(
                 "预测", type="primary", use_container_width=True
