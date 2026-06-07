@@ -33,7 +33,7 @@ _NUMERIC_COLS = [
     "cons_price_index",
     "cons_conf_index",
     "lending_rate3m",
-    "nr.employed",
+    "nr_employed",
 ]
 _CATEGORICAL_COLS = [
     "job",
@@ -239,45 +239,38 @@ with tab2:
             st.info("👈 请先在左侧点击「训练模型」按钮，训练完成后即可在此预测。")
             st.stop()
 
-        with st.form("prediction_form"):
-            inputs = {}
+        inputs = {}
 
-            # Numeric inputs: 2 rows x 5 columns (no column reuse to avoid input loss)
-            for row in range(2):
-                cols = st.columns(5)
-                for ci, col_name in enumerate(_NUMERIC_COLS[row * 5 : (row + 1) * 5]):
-                    with cols[ci]:
-                        default = (
-                            0
-                            if col_name not in df.columns
-                            else float(df[col_name].median())
-                        )
-                        inputs[col_name] = st.number_input(
-                            col_name,
-                            value=default,
-                            format="%.2f",
-                            key=f"pred_{col_name}",
-                        )
+        st.caption("数值特征")
+        for row in range(2):
+            cols = st.columns(5)
+            for ci, col_name in enumerate(_NUMERIC_COLS[row * 5 : (row + 1) * 5]):
+                with cols[ci]:
+                    default = (
+                        0
+                        if col_name not in df.columns
+                        else float(df[col_name].median())
+                    )
+                    inputs[col_name] = st.number_input(
+                        col_name,
+                        value=default,
+                        format="%.2f",
+                        key=f"pred_num_{col_name}",
+                    )
 
-            # Categorical inputs: 2 rows x 5 columns
-            for row in range(2):
-                cols = st.columns(5)
-                for ci, col_name in enumerate(
-                    _CATEGORICAL_COLS[row * 5 : (row + 1) * 5]
-                ):
-                    with cols[ci]:
-                        options = ["unknown"] + sorted(
-                            df[col_name].dropna().unique().tolist()
-                        )
-                        inputs[col_name] = st.selectbox(
-                            col_name, options, key=f"pred_{col_name}"
-                        )
+        st.caption("分类特征")
+        for row in range(2):
+            cols = st.columns(5)
+            for ci, col_name in enumerate(_CATEGORICAL_COLS[row * 5 : (row + 1) * 5]):
+                with cols[ci]:
+                    options = ["unknown"] + sorted(
+                        df[col_name].dropna().unique().tolist()
+                    )
+                    inputs[col_name] = st.selectbox(
+                        col_name, options, key=f"pred_cat_{col_name}"
+                    )
 
-            submitted = st.form_submit_button(
-                "预测", type="primary", use_container_width=True
-            )
-
-        if submitted:
+        if st.button("预测", type="primary", use_container_width=True):
             bundle = load_model_bundle(_MODEL_PATH)
             result = predict(bundle, inputs)
             if result["error"]:
