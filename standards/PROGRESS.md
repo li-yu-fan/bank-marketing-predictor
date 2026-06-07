@@ -8,10 +8,10 @@
 
 ## 当前状态 (最后更新: 2026-06-07 · by Claude)
 
-- **阶段**:`US-3 完成` — PR #3 CI 全绿,等待人工审核合并。
-- **上一步完成**:✅ 在线预测系统完善 — prob_yes 健壮性修复 + 模型信息卡片 + AC5 提示指引,CI 全绿。
-- **下一步 (TODO 第一条)**:✋ **人工 Review 并 Merge PR #3**。
-- **阻塞项**:等待人工操作合并。
+- **阶段**:`全部完成` — 3 个 US 全部合并到 main,项目可交付。
+- **上一步完成**:✅ PR #3 merged,3 个 US 全部完成。
+- **下一步 (TODO 第一条)**:无强制任务。可本地 `streamlit run app.py --server.port 8004` 体验完整功能。
+- **阻塞项**:无。
 
 ---
 
@@ -78,4 +78,4 @@
 - [x] **2026-06-07** 数据分析模块 | `get_numeric_stats` + `get_target_distribution` + `get_correlation_matrix` + `get_missing_summary`,27 tests
 - [x] **2026-06-07** US-1 合并到 main | PR #1 merged (`gh pr merge 1 --merge`),分支保留,本地验证通过
 - [x] **2026-06-07** US-2 合并到 main | PR #2 merged,数据分析页完善(列名对齐 + 数据类型分布 + 数据预览)
-- [x] **2026-06-07** US-3 在线预测系统完善 | prob_yes 健壮性修复 + 模型信息卡片 + AC5 指引,PR #3 CI 全绿
+- [x] **2026-06-07** US-3 合并到 main | PR #3 merged,在线预测系统完善(prob_yes 健壮性 + 模型信息卡片 + AC5 指引)
