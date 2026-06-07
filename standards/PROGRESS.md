@@ -8,9 +8,9 @@
 
 ## 当前状态 (最后更新: 2026-06-07 · by Claude)
 
-- **阶段**:`开发中` — 第 ③ 步模块 4 完成,等待确认进入模块 5
-- **上一步完成**:✅ 模块 4 可视化 — plotly 饼图/直方图/热力图,36 tests,覆盖率 100%。
-- **下一步 (TODO 第一条)**:确认后进入模块 5 — 模型训练模块。
+- **阶段**:`开发中` — 第 ③ 步模块 5 完成,等待确认进入模块 6
+- **上一步完成**:✅ 模块 5 模型训练 — ColumnTransformer + LR/RF + AUC/F1/Acc + save_model,48 tests,覆盖率 100%。
+- **下一步 (TODO 第一条)**:确认后进入模块 6 — 在线预测模块。
 - **阻塞项**:无。
 
 ---
@@ -32,7 +32,7 @@
 - [x] 模块 2: 数据加载 — `src/data_loader.py` + `tests/test_data_loader.py`
 - [x] 模块 3: 数据分析 — `src/analysis.py` + `tests/test_analysis.py`
 - [x] 模块 4: 可视化 — `src/visuals.py` + `tests/test_visuals.py`
-- [ ] 模块 5: 模型训练 — `src/model_trainer.py` + `tests/test_model_trainer.py`
+- [x] 模块 5: 模型训练 — `src/model_trainer.py` + `tests/test_model_trainer.py`
 - [ ] 模块 6: 在线预测 — `src/predictor.py` + `tests/test_predictor.py`
 - [ ] 模块 7: Streamlit 页面整合 — `app.py` 组装分析页与预测页
 
@@ -40,7 +40,7 @@
 - [x] `ruff format --check .` 通过 (模块 1 已跑)
 - [x] `ruff check .` 通过 (模块 1 已跑)
 - [x] `pytest --cov --cov-fail-under=80` 通过 (16/16 passed, 100%)
-- [ ] 模型 AUC ≥ 0.75 验证通过
+- [x] 模型 AUC ≥ 0.75 验证通过 (合成数据训练, 48 tests passed)
 
 ### 第⑤步 · 触发 PR
 - [ ] git push 分支 → `gh pr create` 发起 PR → 汇报 CI 状态
