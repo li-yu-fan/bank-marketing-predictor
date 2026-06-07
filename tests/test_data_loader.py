@@ -74,4 +74,5 @@ class TestGetDataSummary:
         df = pd.DataFrame({"age": [30], TARGET_COLUMN: ["no"]})
         summary = get_data_summary(df)
         assert "int" in summary["dtypes"]["age"]
-        assert "object" in summary["dtypes"][TARGET_COLUMN]
+        # pandas >= 3 reports "str" instead of "object" for string columns
+        assert summary["dtypes"][TARGET_COLUMN] in ("object", "str")
