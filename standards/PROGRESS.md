@@ -8,9 +8,9 @@
 
 ## 当前状态 (最后更新: 2026-06-07 · by Claude)
 
-- **阶段**:`开发中` — 第 ③ 步模块 3 完成,等待确认进入模块 4
-- **上一步完成**:✅ 模块 3 数据分析 — 描述性统计 + 目标分布 + 相关性 + 缺失值,27 tests,覆盖率 100%。
-- **下一步 (TODO 第一条)**:确认后进入模块 4 — 可视化模块。
+- **阶段**:`开发中` — 第 ③ 步模块 4 完成,等待确认进入模块 5
+- **上一步完成**:✅ 模块 4 可视化 — plotly 饼图/直方图/热力图,36 tests,覆盖率 100%。
+- **下一步 (TODO 第一条)**:确认后进入模块 5 — 模型训练模块。
 - **阻塞项**:无。
 
 ---
@@ -31,7 +31,7 @@
 - [x] 模块 1: 项目骨架 — `app.py` + `requirements.txt` + `requirements-dev.txt` + `Dockerfile` + CI workflow
 - [x] 模块 2: 数据加载 — `src/data_loader.py` + `tests/test_data_loader.py`
 - [x] 模块 3: 数据分析 — `src/analysis.py` + `tests/test_analysis.py`
-- [ ] 模块 4: 可视化 — `src/visuals.py` + `tests/test_visuals.py`
+- [x] 模块 4: 可视化 — `src/visuals.py` + `tests/test_visuals.py`
 - [ ] 模块 5: 模型训练 — `src/model_trainer.py` + `tests/test_model_trainer.py`
 - [ ] 模块 6: 在线预测 — `src/predictor.py` + `tests/test_predictor.py`
 - [ ] 模块 7: Streamlit 页面整合 — `app.py` 组装分析页与预测页
