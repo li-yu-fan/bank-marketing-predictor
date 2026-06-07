@@ -25,10 +25,10 @@ EXPECTED_FEATURES = [
     "pdays",
     "previous",
     "poutcome",
-    "emp.var.rate",
-    "cons.price.idx",
-    "cons.conf.idx",
-    "euribor3m",
-    "nr.employed",
+    "emp_var_rate",
+    "cons_price_index",
+    "cons_conf_index",
+    "lending_rate3m",
+    "nr_employed",
 ]
-TARGET_COLUMN = "y"
+TARGET_COLUMN = "subscribe"

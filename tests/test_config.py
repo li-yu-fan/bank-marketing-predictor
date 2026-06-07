@@ -21,8 +21,8 @@ def test_accuracy_threshold_in_range():
     assert 0 < ACCURACY_MIN < 1.0
 
 
-def test_target_column_is_y():
-    assert TARGET_COLUMN == "y"
+def test_target_column_is_subscribe():
+    assert TARGET_COLUMN == "subscribe"
 
 
 def test_expected_features_has_20_columns():
@@ -34,4 +34,4 @@ def test_expected_features_contains_key_columns():
     assert "age" in EXPECTED_FEATURES
     assert "job" in EXPECTED_FEATURES
     assert "duration" in EXPECTED_FEATURES
-    assert "euribor3m" in EXPECTED_FEATURES
+    assert "lending_rate3m" in EXPECTED_FEATURES
