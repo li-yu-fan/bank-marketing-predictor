@@ -1,6 +1,12 @@
 """Tests for config module."""
 
-from src.config import AUC_MIN, ACCURACY_MIN, DEFAULT_PORT, EXPECTED_FEATURES, TARGET_COLUMN
+from src.config import (
+    AUC_MIN,
+    ACCURACY_MIN,
+    DEFAULT_PORT,
+    EXPECTED_FEATURES,
+    TARGET_COLUMN,
+)
 
 
 def test_default_port_is_8004():

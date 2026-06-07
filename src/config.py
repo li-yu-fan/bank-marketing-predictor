@@ -10,9 +10,25 @@ ACCURACY_MIN = 0.80
 
 # Data
 EXPECTED_FEATURES = [
-    "age", "job", "marital", "education", "default", "housing", "loan",
-    "contact", "month", "day_of_week", "duration", "campaign", "pdays",
-    "previous", "poutcome", "emp.var.rate", "cons.price.idx",
-    "cons.conf.idx", "euribor3m", "nr.employed",
+    "age",
+    "job",
+    "marital",
+    "education",
+    "default",
+    "housing",
+    "loan",
+    "contact",
+    "month",
+    "day_of_week",
+    "duration",
+    "campaign",
+    "pdays",
+    "previous",
+    "poutcome",
+    "emp.var.rate",
+    "cons.price.idx",
+    "cons.conf.idx",
+    "euribor3m",
+    "nr.employed",
 ]
 TARGET_COLUMN = "y"
