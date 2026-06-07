@@ -175,7 +175,9 @@ with tab2:
     st.header("在线预测")
 
     if "df" not in st.session_state:
-        st.warning("请先在「数据分析」页上传数据并训练模型。")
+        st.warning(
+            "请先切换到「📊 数据分析」标签页上传 CSV 数据文件，然后回到本页训练模型。"
+        )
         st.stop()
 
     df = st.session_state["df"]
@@ -213,15 +215,26 @@ with tab2:
 
         if st.session_state.get("model_ready"):
             st.success("模型已就绪，可在右侧进行预测。")
+            if "metrics" in st.session_state and "best_name" in st.session_state:
+                best_row = st.session_state["metrics"]
+                best_row = best_row[best_row["model"] == st.session_state["best_name"]]
+                if not best_row.empty:
+                    r = best_row.iloc[0]
+                    st.caption(
+                        f"最佳模型: **{r['model']}** | "
+                        f"AUC: {r['auc']:.4f} | "
+                        f"准确率: {r['accuracy']:.4f} | "
+                        f"F1: {r['f1']:.4f}"
+                    )
         else:
-            st.info("点击上方按钮训练模型。")
+            st.info("点击上方「训练模型」按钮，训练完成后即可在右侧预测。")
 
     # ── Right: Prediction Form ──
     with col_right:
         st.subheader("预测表单")
 
         if not st.session_state.get("model_ready"):
-            st.info("请先训练或加载模型。")
+            st.info("👈 请先在左侧点击「训练模型」按钮，训练完成后即可在此预测。")
             st.stop()
 
         with st.form("prediction_form"):

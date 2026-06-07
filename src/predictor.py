@@ -50,15 +50,12 @@ def predict(bundle: dict, user_input: dict) -> dict:
     X_tf = preprocessor.transform(X_raw)
 
     proba = model.predict_proba(X_tf)[0]
-    # Class order: 0 = no, 1 = yes (alphabetical by pd.get_dummies convention)
-    # scikit-learn LabelEncoder also maps alphabetically: "no" < "yes" → 0, 1
-    pred_idx = model.predict(X_tf)[0]
-    prob_yes = (
-        proba[1] if len(proba) > 1 else proba[0] if pred_idx == 1 else 1 - proba[0]
-    )
+    # model.classes_ = [0, 1] from the mapping {"no": 0, "yes": 1} in _separate_xy
+    yes_idx = list(model.classes_).index(1)
+    pred_class = model.predict(X_tf)[0]
 
     return {
-        "prediction": _LABEL_MAP.get(int(pred_idx), "unknown"),
-        "probability": round(float(prob_yes), 4),
+        "prediction": _LABEL_MAP.get(int(pred_class), "unknown"),
+        "probability": round(float(proba[yes_idx]), 4),
         "error": None,
     }
