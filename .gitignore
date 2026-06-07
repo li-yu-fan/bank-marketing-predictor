@@ -28,6 +28,10 @@ data/*.arff
 models/*.pkl
 models/*.joblib
 
+# Coverage & tools
+.coverage
+.claude/
+
 # Environment
 .env
 .env.local

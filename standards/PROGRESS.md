@@ -8,10 +8,10 @@
 
 ## 当前状态 (最后更新: 2026-06-07 · by Claude)
 
-- **阶段**:`初始化` — 对应六步流程第 ① 步(建仓)
-- **上一步完成**:填写了 `00-project-context.md` 与 `01-requirements.md`,等待人工确认需求。
-- **下一步 (TODO 第一条)**:人工确认需求后,创建 GitHub 仓库。
-- **阻塞项**:无。已确认去掉 CD,仅保留 CI。
+- **阶段**:`初始化` — 第 ① 步完成,等待确认进入第 ② 步
+- **上一步完成**:✅ 建仓 `https://github.com/li-yu-fan/bank-marketing-predictor`,SSH 推送 main。
+- **下一步 (TODO 第一条)**:确认后进入第 ② 步,从 main 切 `feature/1-project-init`。
+- **阻塞项**:无(无需 CD,跳过 Secrets 配置)。
 
 ---
 
