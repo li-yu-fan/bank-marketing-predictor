@@ -8,10 +8,10 @@
 
 ## 当前状态 (最后更新: 2026-06-07 · by Claude)
 
-- **阶段**:`US-2 已合并` — PR #2 merged → main。准备进入 US-3:在线预测系统。
-- **上一步完成**:✅ PR #2 merged,5 files → main,数据分析页完善。
-- **下一步 (TODO 第一条)**:开 `feature/3-online-prediction` 分支,实现模型训练与在线预测(见 US-3)。
-- **阻塞项**:无。
+- **阶段**:`US-3 完成` — PR #3 CI 全绿,等待人工审核合并。
+- **上一步完成**:✅ 在线预测系统完善 — prob_yes 健壮性修复 + 模型信息卡片 + AC5 提示指引,CI 全绿。
+- **下一步 (TODO 第一条)**:✋ **人工 Review 并 Merge PR #3**。
+- **阻塞项**:等待人工操作合并。
 
 ---
 
@@ -25,7 +25,7 @@
 ### 第②步 · 开 feature 分支
 - [x] 从 main 切出 `feature/1-project-init` 分支,完成工程骨架(见 US-1)
 - [x] 从 main 切出 `feature/2-data-analysis` 分支,实现数据分析页面(见 US-2)
-- [ ] 从 main 切出 `feature/3-online-prediction` 分支,实现模型训练与在线预测(见 US-3)
+- [x] 从 main 切出 `feature/3-online-prediction` 分支,实现模型训练与在线预测(见 US-3)
 
 ### 第③步 · 本地模块化开发
 - [x] 模块 1: 项目骨架 — `app.py` + `requirements.txt` + `requirements-dev.txt` + `Dockerfile` + CI workflow
@@ -78,3 +78,4 @@
 - [x] **2026-06-07** 数据分析模块 | `get_numeric_stats` + `get_target_distribution` + `get_correlation_matrix` + `get_missing_summary`,27 tests
 - [x] **2026-06-07** US-1 合并到 main | PR #1 merged (`gh pr merge 1 --merge`),分支保留,本地验证通过
 - [x] **2026-06-07** US-2 合并到 main | PR #2 merged,数据分析页完善(列名对齐 + 数据类型分布 + 数据预览)
+- [x] **2026-06-07** US-3 在线预测系统完善 | prob_yes 健壮性修复 + 模型信息卡片 + AC5 指引,PR #3 CI 全绿
